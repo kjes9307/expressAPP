@@ -16,7 +16,7 @@ router.get('/',async function(req, res, next) {
 
 router.post('/',async function(req, res, next) {
   try {
-    let addPost = req.body
+    let addPost = req.body // 不要直接接入body 用屬性接入
     let data = await Post.create(addPost);
     responseHandler(res,data,200);
   }catch(err){

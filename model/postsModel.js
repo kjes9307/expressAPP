@@ -2,16 +2,44 @@
 const mongoose = require('mongoose');
     // 建立collection 
     const roomSchema = new mongoose.Schema( {
-        name: String,
-        content:{
+          name: {
             type: String,
-            required: [true,"內容必填"]
-        },
-        likes: Number,
-        img : String
+            required: [true, '貼文姓名未填寫']
+          },
+          tags: [
+            {
+              type: String,
+              required: [true, '貼文標籤 tags 未填寫']
+            }
+          ],
+          type: {
+            type: String,
+            enum:['group','person'],
+            required: [true, '貼文類型 type 未填寫']
+          },
+          image: {
+            type: String,
+            default: ""
+          },
+          createAt: {
+            type: Date,
+            default: Date.now,
+            select: false
+          },
+          content: {
+            type: String,
+            required: [true, 'Content 未填寫'],
+          },
+          likes: {
+            type: Number,
+            default: 0
+          },
+          comments:{
+            type: Number,
+            default: 0
+          }
     },{
         versionKey: false,
-        timestamps: true,
         collection : "post"
     }
     );
