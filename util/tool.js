@@ -2,6 +2,7 @@ const defineStatus = {
     200 : "success",
     404 : "error"
 }
+// express status code 預設200
 const responseHandler = (res,data,statusCode) => {
     if(data !== null) {
         res.status(statusCode).json({
